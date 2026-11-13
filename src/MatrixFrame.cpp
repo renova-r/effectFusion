@@ -39,20 +39,20 @@ double rdot(int n, double* dx, int incx, double* dy, int incy)
 //------------------------------------------------------------------------------
 
 void rgemm(char transa, char transb, int m, int n, int k, double alpha, double* a, int lda, double* b, int ldb, double beta, double* c, int ldc)
-{ dgemm_(&transa, &transb, &m, &n, &k, &alpha, a, &lda, b, &ldb, &beta, c, &ldc); }
+{ dgemm_(&transa, &transb, &m, &n, &k, &alpha, a, &lda, b, &ldb, &beta, c, &ldc FCONE FCONE); }
 
 void rsyr2k(char uplo, char trans, int n, int k, double alpha, double* a, int lda, double* b, int ldb, double beta, double* c, int ldc)
-{ dsyr2k_(&uplo, &trans, &n, &k, &alpha, a, &lda, b, &ldb, &beta, c, &ldc); }
+{ dsyr2k_(&uplo, &trans, &n, &k, &alpha, a, &lda, b, &ldb, &beta, c, &ldc FCONE FCONE); }
 
 void rtrmm(char side, char uplo, char transa, char diag, int m, int n, double alpha, double* a, int lda, double* b, int ldb)
-{ dtrmm_(&side, &uplo, &transa, &diag, &m, &n, &alpha, a, &lda, b, &ldb); }
+{ dtrmm_(&side, &uplo, &transa, &diag, &m, &n, &alpha, a, &lda, b, &ldb FCONE FCONE FCONE FCONE); }
 
 void rtrsm(char side, char uplo, char transa, char diag, int m, int n, double alpha, double* a, int lda, double* b, int ldb)
-{ dtrsm_(&side, &uplo, &transa, &diag, &m, &n, &alpha, a, &lda, b, &ldb); }
+{ dtrsm_(&side, &uplo, &transa, &diag, &m, &n, &alpha, a, &lda, b, &ldb FCONE FCONE FCONE FCONE); }
 
 // only overwrites uplo portion of c!!!
 void rsyrk(char uplo, char trans, int n, int k, double alpha, double* a, int lda, double beta, double* c, int ldc)
-{ dsyrk_(&uplo, &trans, &n, &k, &alpha, a, &lda, &beta, c, &ldc); }
+{ dsyrk_(&uplo, &trans, &n, &k, &alpha, a, &lda, &beta, c, &ldc FCONE FCONE); }
 
 //------------------------------------------------------------------------------
 
@@ -60,10 +60,10 @@ void rgesv(int n, int nrhs, double* a, int lda, int* ipiv, double* b, int ldb, i
 { dgesv_(&n, &nrhs, a, &lda, ipiv, b, &ldb, &info); }
 
 void rposv(char uplo, int n, int nrhs, double* a, int lda, double* b, int ldb, int& info)
-{ dposv_(&uplo, &n, &nrhs, a, &lda, b, &ldb, &info); }
+{ dposv_(&uplo, &n, &nrhs, a, &lda, b, &ldb, &info FCONE); }
 
 void rpotrf(char uplo, int n, double* a, int lda, int& info)
-{ dpotrf_(&uplo, &n, a, &lda, &info); }
+{ dpotrf_(&uplo, &n, a, &lda, &info FCONE); }
 
 void rgelsy(int m, int n, int nrhs, double* a, int lda, double* b, int ldb, int* jpvt, double rcond, int& rank, double* work, int lwork, int& info)
 { dgelsy_(&m, &n, &nrhs, a, &lda, b, &ldb, jpvt, &rcond, &rank, work, &lwork, &info); }

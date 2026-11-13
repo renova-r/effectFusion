@@ -200,11 +200,7 @@ BLASDEC(float)
 
 extern "C" {
 
-  // DOUBLE
-
-  void dsyevd_(char* JOBZ, char* UPLO, int* N, double* A, int* LDA, double* W, double* WORK, int* LWORK, int* IWORK, int* LIWORK, int* INFO);
-  void dgesvd_(char* JOBU, char* JOBVT, int* M, int* N, double* A, int* LDA, double* S, double* U, int* LDU, double* VT, int* LDVT, double* WORK, int* LWORK, int* INFO);
-  void dgesdd_(char* JOBZ, int* M, int* N, double* A, int* LDA, double* S, double* U, int* LDU, double* VT, int* LDVT, double* WORK, int* LWORK, int* IWORK, int* INFO);
+  // DOUBLE: declared by <R_ext/Lapack.h> (included via MatrixFrame.h)
 
   // FLOAT
 

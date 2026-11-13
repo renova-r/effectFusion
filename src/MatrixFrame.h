@@ -28,6 +28,15 @@ using std::ifstream;
 #include <R_ext/Utils.h>
 #endif
 
+// Double precision BLAS/LAPACK prototypes come from R's headers so that the
+// hidden Fortran character-length arguments are passed (USE_FC_LEN_T, FCONE).
+#include <Rconfig.h>
+#include <R_ext/BLAS.h>
+#include <R_ext/Lapack.h>
+#ifndef FCONE
+# define FCONE
+#endif
+
 using std::vector;
 using std::string;
 using std::ostream;
@@ -348,22 +357,7 @@ extern "C" {
   // BLAS Level 3
   // LAPACK
 
-  // double
-
-  void daxpy_(int* N, double* DA, double* DX, int* INCX, double* DY, int* INCY);
-  double ddot_(int* N, double* DX, int* INCX, double* DY, int* INCY);
-
-  void dgemm_(char* TRANSA, char* TRANSB, int* M, int* N, int* K, double* ALPHA, double* A, int* LDA, double* B, int* LDB, double* BETA, double* C, int* LDC);
-  void dsyr2k_(char* UPLO, char* TRANS, int* N, int* K, double* ALPHA, double* A, int* LDA, double* B, int* LDB, double* BETA, double* C, int* LDC);
-
-  void dtrmm_(char* SIDE, char* UPLO, char* TRANSA, char* DIAG, int* M, int* N, double* ALPHA, double* A, int* LDA, double* B, int* LDB);
-  void dtrsm_(char* SIDE, char* UPLO, char* TRANSA, char* DIAG, int* M, int* N, double* ALPHA, double* A, int* LDA, double* B, int* LDB);
-  void dsyrk_(char* UPLO, char* TRANS, int* N, int* K, double* ALPHA, double* A, int* LDA, double* BETA, double* C, int* LDC);
-
-  void dgesv_(int* N, int* NRHS, double* A, int* LDA, int* IPIV, double* B, int* LDB, int* INFO);
-  void dposv_(char* UPLO, int* N, int* NRHS, double* A, int* LDA, double* B, int* LDB, int* INFO);
-  void dpotrf_(char* UPLO, int* N, double* A, int* LDA, int* INFO);
-  void dgelsy_(int* M, int* N, int* NRHS, double* A, int* LDA, double* B, int* LDB, int* JPVT, double* RCOND, int* RANK, double* WORK, int* LBORK, int* INFO);
+  // double: declared by <R_ext/BLAS.h> and <R_ext/Lapack.h>
 
   // float
 
