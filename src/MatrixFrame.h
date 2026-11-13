@@ -24,8 +24,8 @@ using std::ifstream;
 #endif
 
 #ifdef USE_R
+#include <R.h>
 #include <R_ext/Utils.h>
-#include <R_ext/PrtUtil.h>
 #endif
 
 using std::vector;
